@@ -24,7 +24,7 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 5
-
+    paginate_orphans = 0
 
 class UserPostListView(ListView):
     model = Post
@@ -43,7 +43,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title','subtitle','slug','author','image','content','tags','date_posted','updated','publish','status']
+    fields = ['title','subtitle','slug','author','body','tags','date_posted','updated','publish','status']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -52,7 +52,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title','subtitle','slug','author','image','content','tags','date_posted','updated','publish']
+    fields = ['title','subtitle','slug','author','body','tags','date_posted','updated','publish']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

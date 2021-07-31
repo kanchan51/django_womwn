@@ -1,5 +1,7 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% load account %}
+{% load socialaccount %}
 {% block content %}
     <div class="content-section">
         <form method="POST">
@@ -19,6 +21,10 @@
             <small class="text-muted">
                 Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
             </small>
+
         </div>
+        <h1>
+        <a href="{% provider_login_url "google" %}">Google</a>
+    </h1>
     </div>
 {% endblock content %}

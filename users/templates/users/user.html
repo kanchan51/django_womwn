@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="user-post-list mt-4">
+    <h4>My Post Lists</h4>
+    <div class="table-responsive mt-4 mb-5">
+        <table class="table table-hover">
+            <thead>
+                <tr class="text-left">
+                    <th>TITLE</th>
+                    <th>CREATED ON</th>
+                    <th>UPDATED ON</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                </tr>
+            </thead>
+            {% for post in post_list %}
+            <tbody>
+                <tr>
+                    <td>{{ post.slug }} </td>
+                    <td>{{ post.created_on }}</td>
+                    <td>{{ post.updated_on }}</td>
+                    <td><a class="btn btn-info" href="{% url 'post-update' post.id %}" role="button">Edit</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'post-delete' post.id %}" role="button">Delete</a></td>
+                </tr>
+            </tbody>
+            {% endfor%}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

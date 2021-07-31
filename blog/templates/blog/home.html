@@ -1,4 +1,7 @@
 {% extends "blog/base.html" %}
+
+{% load account %}
+{% load socialaccount %}
 {% block content %}
      {% for post in posts %} 
          <article class="media content-section">

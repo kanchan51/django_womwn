@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-
+from blog.models import Post
 
 def register(request):
     if request.method == 'POST':
@@ -40,3 +40,23 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
+
+
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
+
+class UserProfileView(LoginRequiredMixin, ListView):
+ #queryset = Post.objects.all()
+ template_name = "users/user.html"
+
+ def get_queryset(self):
+    user = self.request.user
+    return Post.objects.filter(author=user)
