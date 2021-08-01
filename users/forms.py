@@ -10,17 +10,16 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name','last_name','email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
-    contact=forms.IntegerField(max_value=10)
 
     class Meta:
         model = User
 
-        fields = ['username', 'first_name','last_name', 'email','contact']
+        fields = ['username', 'first_name','last_name', 'email']
 
 
 class ProfileUpdateForm(forms.ModelForm):
